@@ -1,0 +1,76 @@
+package Richamam1;
+
+import java.util.Scanner;
+
+class Employe_detail{
+	int id,salary;
+	String name,dep;
+	
+	Employe_detail(){		
+	}
+	
+	Employe_detail(int id,String name,int salary,String dep){
+		this.id=id;
+		this.name=name;
+		this.salary=salary;
+		this.dep=dep;
+	}
+	
+	void print() {
+		System.out.println(id+" "+name+" "+salary+" "+dep);
+	}
+	
+}
+
+public class Employe {
+	public static void main(String [] args) {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter number of employee");
+		int n=sc.nextInt();
+		Employe_detail [] detail=new Employe_detail[n]; 
+		int num=0;
+		do {
+			System.out.println("Choose an Option:-");
+			System.out.println("Press 1 to enter the record into system");
+			System.out.println("Press 2 to display all record");
+			System.out.println("Press 3 to display a particular record");
+			System.out.println("Press 4 to exit the system");
+			int c=sc.nextInt();
+			switch(c) {
+			case 1:
+					System.out.println("Enter the employee id");
+					int empid = sc.nextInt();
+					System.out.println("Enter the the name of the employee");
+					String name = sc.next();
+					System.out.println("Enter the salary of the employee");
+					int salary = sc.nextInt();
+					System.out.println("Enter the department of the employee");
+					String department = sc.next();
+					detail[num] = new Employe_detail(empid,name,salary,department);
+					num++;
+					break;
+			case 2:
+					System.out.println("All records are as follows");
+					for(int i=0;i<detail.length;i++) {
+						detail[i].print();
+					}
+					break;
+			case 3:
+				System.out.println("Enter the employee id you want to search");
+				int id = sc.nextInt();
+				
+				for(int j = 0;j<=detail.length;j++)
+				{
+				if(detail[j].id == id)
+				{
+					detail[j].print();
+				break;
+				}
+				}
+				break;
+			case 4:System.out.println("Done");
+				return;
+			}
+		}while(true);
+	}
+}
