@@ -1,0 +1,110 @@
+package Richamam1;
+
+import java.util.Scanner; 
+
+class Video{
+	String [] s= {
+	"Bala",
+	"HouseFull 4",
+	"Gully Boy",
+	"K.G.F.",
+	"Koi mil gya",
+	"MS DHONI",
+	"Sultan",
+	"Dangal",
+	"Bhaag Milka Bhaag",
+	"Mission Impossible",
+	"Dil toh pagal",
+	"chal chala chal",
+	"malamaal weekly",
+	"De Dana Dan",
+	"khiladi"};
+	
+	
+	 boolean [] flag= {true,true,true,true,true,true,true,true,true,true,true,true,true,true,true};
+}
+
+class VideoStore extends Video{
+	void display() {
+		for(int i=0;i<s.length;i++) {
+			if(flag[i]!=false)
+			System.out.println(i+1+" "+s[i]);
+		}
+	}
+	
+	void Onrent() {
+		int j=0;
+		for(int i=0;i<s.length;i++) {
+			if(flag[i]==false) {
+				System.out.println(i+1+" "+s[i]);
+				j++;
+			}
+		}
+		
+		if(j==0) {
+			System.out.println("You buy nothing");
+		}
+	}
+	void back(String s1) {
+		for(int i=0;i<s.length;i++) {
+			String s2=s[i].toLowerCase();
+			if(s1.equalsIgnoreCase(s2)) {
+				flag[i]=true;
+			}
+		}
+		
+	}
+	
+	void buy(int index) {
+		flag[index]=false;
+	}
+}
+
+public class VideoStoreLancher {
+	Scanner sc=new Scanner(System.in);
+	public static void main(String [] args) {
+		Scanner sc=new Scanner(System.in);
+		VideoStoreLancher obj=new VideoStoreLancher();
+		while(true) {
+			System.out.println("Enter 1 to buy");
+			System.out.println("Enter 2 to return");
+			System.out.println("Enter 3 to exit");
+			int c=sc.nextInt();
+			switch(c) {
+			case 1:obj.checkout();
+				break;
+			case 2:obj.back();
+				break;
+			case 3:obj.Onrent();
+					return;	
+			}
+		}
+	}
+	void back() {
+		System.out.println("Enter number of movies you want to return");
+		int mt=sc.nextInt();
+		System.out.println("Enter movie names to want to return");
+		for(int i=0;i<mt;i++) {
+		String s=sc.next();
+		s.toLowerCase();
+		VideoStore obj1=new VideoStore();
+		obj1.back(s);
+		}
+		System.out.println("THANKS ALOT:)");
+	}
+	void Onrent() {
+		VideoStore obj1=new VideoStore();
+		obj1.Onrent();
+		System.out.println("Thanks for visiting");
+	}
+	void checkout() {
+		VideoStore obj1=new VideoStore();
+		System.out.println("Movies available in store");
+		obj1.display();
+		System.out.println("Enter movie number you want to buy");
+		int index=sc.nextInt();
+		obj1.buy(index-1);
+		System.out.println("Movies left in store");
+		obj1.display();
+	}
+}
