@@ -1,0 +1,116 @@
+import java.util.LinkedList;
+import java.util.Scanner;
+
+public class List {
+	Scanner sc=new Scanner(System.in);
+	LinkedList<Integer> ld=new LinkedList<Integer>();
+	public static void main(String [] args) {
+		List obj=new List();
+		Scanner scan=new Scanner(System.in);
+		while(true) {
+			System.out.println("Choose From the following");
+			System.out.println("1 to insert data");
+			System.out.println("2 to display data");
+			System.out.println("3 to search data");
+			System.out.println("4 to delete data");
+			System.out.println("0 to exit");
+			int c=scan.nextInt();
+			switch(c) {
+				case 1:obj.Add();
+				break;
+				case 2:obj.display();
+				break;
+				case 3:obj.Search();
+				break;
+				case 4:obj.Delete();
+				break;
+				case 0:System.out.println("Thank you.......");
+					System.exit(0);
+			}
+
+			System.out.println();
+			System.out.println();
+		}
+	}
+	void Delete() {
+		System.out.println("Choose From the following");
+		System.out.println("1 to delete the starting element");
+		System.out.println("2 to delete at specfic position");
+		System.out.println("3 to delete the last element");
+		int c=sc.nextInt(),size;
+		switch(c) {
+		case 1:size = ld.size();
+			if(size<=0) {
+				System.out.println("No element exists");
+			}
+			else {
+				ld.removeFirst();
+				System.out.println("First element deleted");
+			}
+			break;
+		case 2:System.out.println("Enter Positon you wanna delete");
+			int p=sc.nextInt();
+			size = ld.size();
+			if(size<p||size<=0) {
+				System.out.println("No element exits");
+			}
+			else {
+				ld.remove(p);
+				System.out.println("Done");
+			}
+			break;
+		case 3:size=ld.size();
+			if(size<=0) {
+				System.out.println("No element exists");
+			}
+			else {
+				ld.removeLast();
+				System.out.println("Done");
+			}
+			break;
+		}
+	}
+
+	void display() {
+		System.out.println("Element are : "+ld);
+	}
+
+	void Search() {
+		System.out.println("Enter Element you wanna search");
+		int n=sc.nextInt();
+		boolean status = ld.contains(n);
+        if(status)
+            System.out.println("List contains the element : "+ n);
+        else
+            System.out.println("List doesn't contain the element : "+ n);
+	}
+	void Add() {
+		System.out.println("Choose From the following");
+		System.out.println("1 to insert at starting");
+		System.out.println("2 to insert at specfic position");
+		System.out.println("3 to insert at last");
+		int c=sc.nextInt(),n;
+		switch(c) {
+		case 1:System.out.println("Enter element you wanna insert");
+			n=sc.nextInt();
+			ld.addFirst(n);
+			break;
+		case 2:System.out.println("Enter Positon you wanna insert");
+			int p=sc.nextInt();
+			int size = ld.size();
+			if(size<p) {
+				System.out.println("Entered positon is out of bound");
+			}
+			else {
+			System.out.println("Enter element you wanna insert");
+			n=sc.nextInt();
+			ld.add(p, n);
+			}
+			break;
+		case 3:System.out.println("Enter element you wanna insert");
+			n=sc.nextInt();
+			ld.addLast(n);
+			break;
+		}
+	}
+}
