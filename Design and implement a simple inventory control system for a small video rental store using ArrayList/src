@@ -1,0 +1,193 @@
+package Richamam1;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
+class Video1{
+	
+	List<String> s= new ArrayList<>();
+	List<Integer> flag=new ArrayList<>();
+	Video1(){
+		s.add("Bala");
+		s.add("HouseFull 4");
+		s.add("Gully Boy");
+		s.add("K.G.F.");
+		s.add("Koi mil gya");
+		s.add("MS DHONI");
+		s.add("Sultan");
+		s.add("Dangal");
+		s.add("Bhaag Milka Bhaag");
+		s.add("Mission Impossible");
+		s.add("Dil toh pagal");
+		s.add("chal chala chal");
+		s.add("malamaal weekly");
+		s.add("De Dana Dan");
+		s.add("khiladi");
+		flag.add(1);
+		flag.add(1);
+		flag.add(1);
+		flag.add(1);
+		flag.add(1);
+		flag.add(1);
+		flag.add(1);
+		flag.add(1);
+		flag.add(1);
+		flag.add(1);
+		flag.add(1);
+		flag.add(1);
+		flag.add(1);
+		flag.add(1);
+		flag.add(1);
+	}
+}
+
+class VideoStore1 extends Video1{
+	void add(String s1) {
+		flag.add(1);s.add(s1);
+	}
+	void display1() {
+		for(int i=0;i<s.size();i++) {
+			if(flag.get(i)!=0)
+				System.out.println(i+1+" "+s.get(i));
+		}
+	}
+	void buy(String s1) {
+		int f=0,exist=0;
+		for(int i=0;i<s.size();i++) {
+			String s2=s.get(i).toLowerCase();
+			if(s1.equalsIgnoreCase(s2)) {
+				exist=1;
+				flag.set(i, 0);
+				break;
+			}
+		}
+
+	}
+	void rent(String s1) {
+		int f=0,exist=0;
+		for(int i=0;i<s.size();i++) {
+			String s2=s.get(i).toLowerCase();
+			if(s1.equalsIgnoreCase(s2)) {
+				exist=1;
+				break;
+			}	
+		}
+		if(exist==1) {
+			for(int i=0;i<s.size();i++) {
+				String s2=s.get(i).toLowerCase();
+				if(s1.equalsIgnoreCase(s2)&&flag.get(i)==1) {
+					f=1;
+					break;
+				}
+			}
+			if(f==0) {
+				for(int i=0;i<s.size();i++) {
+					String s2=s.get(i).toLowerCase();
+					if(s1.equalsIgnoreCase(s2)) {
+						flag.set(i, 1);
+						break;
+					}
+				}
+				System.out.println("THANKS ALOT:)");
+			}
+			else
+				System.out.println("Already exists");
+		}
+		else
+			System.out.println("No such movies");
+	}
+
+}
+
+
+public class VideoStoreLauncher {
+	VideoStore1 obj1=new VideoStore1();
+	Scanner sc=new Scanner(System.in);
+	public static void main(String [] args) {
+		Scanner sc=new Scanner(System.in);
+		VideoStoreLauncher obj=new VideoStoreLauncher();
+		while(true) {
+			System.out.println("Enter 1 to Display Movies");
+			System.out.println("Enter 2 to add latest movies");
+			System.out.println("Enter 3 to buy");
+			System.out.println("Enter 4 to return");
+			System.out.println("Enter 5 to exit");
+			int c=sc.nextInt();
+			switch(c) {
+				case 1:obj.display();
+				break;
+				case 2:obj.admin();
+				break;
+				case 3:obj.buy();
+				break;
+				case 4:obj.rent();
+				break;
+				case 5:return;
+			}
+		}
+	}
+
+	void display() {
+		System.out.println();
+		System.out.println("====================================================================");
+		System.out.println();
+		obj1.display1();
+		System.out.println();
+		System.out.println("====================================================================");
+		System.out.println();
+	}
+	void admin() {
+		System.out.println();
+		System.out.println("====================================================================");
+		System.out.println();
+		System.out.println("How many new movies");
+		int n=sc.nextInt();
+		System.out.println("Enter movie name");
+		for(int i=0;i<n+1;i++) {
+			String s="";
+			s=sc.nextLine();
+			if(i>0) {
+				obj1.add(s);
+			}
+		}
+		System.out.println();
+		System.out.println("====================================================================");
+		System.out.println();
+	}
+	void buy() {
+		System.out.println();
+		System.out.println("====================================================================");
+		System.out.println();
+		System.out.println("Ho wmany movies you want to buy");
+		int n=sc.nextInt();
+		System.out.println("Enter movie name you want to buy");
+		for(int j=0;j<=n;j++) {
+			String index=sc.nextLine();
+			if(j>0) {
+				obj1.buy(index);
+			}
+		}
+		System.out.println();
+		System.out.println("====================================================================");
+		System.out.println();
+	}
+	void rent() {
+		System.out.println();
+		System.out.println("====================================================================");
+		System.out.println();
+		System.out.println("How many movie you want to return ");
+		int n=sc.nextInt();
+		System.out.println("Enter movie name you want to return ");
+		for(int i=0;i<n;i++) {
+			String s=sc.next();
+			s.toLowerCase();
+			obj1.rent(s);
+		}
+		System.out.println();
+		System.out.println("====================================================================");
+		System.out.println();
+	}
+}
