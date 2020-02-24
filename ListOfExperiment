@@ -1,0 +1,25 @@
+###############################_____List of Experiments____________##########################
+
+###############################_____UNIT-I____________##########################
+
+1. Create a application to save the employee information using arrays
+2. Design and implement a simple inventory control system for a small video rental store.
+3. Create a application to calculate interest for FDs, RDs based on certain conditions using inheritance.
+
+###############################_____UNIT-II____________##########################
+
+4. Create a program to set view of Keys from Java Hash table.
+5. Create a program to show the usage of Sets of Collection interface.
+6. Write a Program to perform the basic operations like insert, delete, display and search in list. List
+contains String object items where these operations are to be performed.
+7. Create a menu based Java application with the following options.1.Add an Employee2.Display All3.Exit
+If option 1 is selected, the application should gather details of the employee like employee name,
+employee id, designation and salary and store it in a file. If option 2 is selected, the application should
+display all the employee details. If option 3 is selected the application should exit.
+
+###############################_____UNIT-III____________##########################
+
+8. Create a palindrome creator application for making a longest possible palindrome out of given input
+string.
+9. Create a Servlet/ application with a facility to print any message on web browser.
+10. Create JSP application for addition, multiplication and division.
