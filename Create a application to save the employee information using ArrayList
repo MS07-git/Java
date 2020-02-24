@@ -1,0 +1,161 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Scanner;
+
+class Employee1{
+	
+	int id;
+	String name;
+	String email;
+	String phone_no;
+	
+	public Employee1(){
+		
+	}
+	
+	public Employee1(int id, String name, String email, String phone_no) {
+		this.id=id;
+		this.name=name;
+		this.email=email;
+		this.phone_no=phone_no;
+	}		
+	
+	void print() {
+		System.out.println(id+"\t"+name+"\t"+email+"\t"+phone_no+" ");
+	}
+	
+}
+
+public class Employee { 
+	
+	static ArrayList<Employee1> obj=new ArrayList<Employee1>();
+	Scanner sc=new Scanner(System.in);
+	
+	public static void main(String [] args) {
+		
+		Scanner sc=new Scanner(System.in);
+		
+		Employee emp=new Employee();
+				
+		do {
+			System.out.println();
+			System.out.println(" Choose from the following given options");
+			System.out.println(" 1 To Add New Employee Data");
+			System.out.println(" 2 To Display Data");
+			System.out.println(" 3 To Search Employee");
+			System.out.println(" 4 To Delete Employee");
+			System.out.println(" 0 To Exit");
+			int c=sc.nextInt();
+			switch(c){
+			 	case 1:emp.Add();
+		 		 	  	break;		
+			 	case 2:emp.Display();
+			 			break;
+			 	case 3:emp.Search();
+			 			break;
+			 	case 4:emp.Delete();
+	 					break;
+			 	case 0:
+					   System.out.println(":))............Done............:))"); 
+					   return;		 
+			}
+		}while(true);
+		
+	}
+	
+	void Add() {
+			
+			System.out.println("Enter ID of Employee");
+	 	  	int id=sc.nextInt();
+	 	  	Iterator itr=obj.iterator();  
+	 	  	boolean exists=false;
+	 	  	while(itr.hasNext()){  
+	 	  		Employee1 obj2=(Employee1)itr.next();
+	 	  		if(obj2.id==id) {
+	 	  			System.out.println();
+	 	  			System.out.println("Employee already exists");
+	 	  			System.out.println();
+	 	  			exists=true;
+	 	  			break;
+	 	  		}
+				  
+	 	  	}
+	 	  	if(exists==false) {
+			  
+	 	  		System.out.println("Enter name of Employee");
+	 	  		String name=sc.next();
+	 	  		System.out.println("Employee Email_id of Employee");
+	 	  		String email=sc.next();
+	 	  		System.out.println("Employee Phone_no of Employee");
+	 	  		String phone_no=sc.next();
+	 	  		Employee1 obj1= new Employee1(id,name,email,phone_no);
+	 	  		
+	 	  		obj.add(obj1);
+	 	  	}
+	}
+	
+	void Display() {
+			
+			Iterator itr=obj.iterator();  
+			while(itr.hasNext()){  
+				Employee1 p=(Employee1)itr.next();  
+				p.print();  
+			} 
+	}
+	
+	void  Search() {
+		
+			System.out.println("Enter ID of Employee");
+ 	  		int id=sc.nextInt();
+			Iterator itr=obj.iterator();  
+			boolean exists=false;
+			while(itr.hasNext()){  
+				Employee1 obj2=(Employee1)itr.next();
+				if(obj2.id==id) {
+					System.out.println();
+					obj2.print();
+					System.out.println();
+					exists=true;
+					break;
+				}
+			  
+			}
+	
+			if(exists==false) {
+					System.out.println();
+					System.out.println("Employee does not exists");
+					System.out.println();
+				
+			}
+		 
+	}
+	
+	void Delete() {
+			
+			System.out.println("Enter ID of Employee");
+	  		int id=sc.nextInt();
+	  		Iterator itr=obj.iterator();  
+	  		boolean exists=false;
+	  		while(itr.hasNext()){  
+	  			Employee1 obj2=(Employee1)itr.next();
+	  			if(obj2.id==id) {
+	  				System.out.println();
+	  				obj.remove(obj2);
+	  				System.out.println("tasks accomplish.......");
+	  				System.out.println();
+	  				exists=true;
+	  				break;
+	  			}
+		  
+	  		}
+
+	  		if(exists==false) {
+	  			System.out.println();
+				System.out.println("Employee does not exists");
+				System.out.println();
+			
+	  		}
+	}
+	
+}
+
