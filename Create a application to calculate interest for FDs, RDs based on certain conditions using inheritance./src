@@ -1,0 +1,249 @@
+package Richamam1;
+
+import java.util.Scanner;
+
+abstract class Account{
+	abstract void calculateInterest();
+}
+class SBAccount extends Account{
+  double interestRate,amount;
+  String type="";
+  double ans;
+  public SBAccount(double amount,String type){
+    this.amount=amount;
+    this.type=type;
+  }
+  void calculateInterest() {
+    if(type.equalsIgnoreCase("NRI")) {
+      ans=amount*0.06;
+    }
+    else if(type.equalsIgnoreCase("Normal")) {
+      ans=amount*0.04;
+    }
+    System.out.println("Interest gained: Rs."+ans);
+  }
+}
+
+class RDAccount extends Account {
+  double interestRate,amount,montlyAmount;
+  int noOfMonths,ageOfaccholder;
+  public RDAccount(double amount,int noOfmonths,int ageOfaccholder) {
+    this.amount=amount;
+    this.noOfMonths=noOfmonths;
+    this.ageOfaccholder=ageOfaccholder;
+  }
+  void calculateInterest() {
+    double ans;
+    if(ageOfaccholder<60) {
+      if(noOfMonths==6) {
+        ans=((noOfMonths*30)*amount*7.50)/100;
+      }
+      else if(noOfMonths==9) {
+        ans=((noOfMonths*30)*amount*7.75)/100;
+      }
+      else if(noOfMonths==12) {
+        ans=((noOfMonths*30)*amount*8.00)/100;
+      }
+      else if(noOfMonths==15) {
+        ans=((noOfMonths*30)*amount*8.25)/100;
+      }
+      else if(noOfMonths==18) {
+        ans=((noOfMonths*30)*amount*8.50)/100;
+      }
+      else if(noOfMonths==21) {
+        ans=((noOfMonths*30)*amount*8.75)/100;
+      }
+      else {
+        ans=((noOfMonths*30)*amount*8.75)/100;
+      }
+    }
+    else {
+    if(noOfMonths==6) {
+      ans=((noOfMonths*30)*amount*8.00)/100;
+      }
+      else if(noOfMonths==9) {
+        ans=((noOfMonths*30)*amount*8.25)/100;
+      }
+      else if(noOfMonths==12) {
+        ans=((noOfMonths*30)*amount*8.50)/100;
+      }
+      else if(noOfMonths==15) {
+        ans=((noOfMonths*30)*amount*8.75)/100;
+      }
+      else if(noOfMonths==18) {
+        ans=((noOfMonths*30)*amount*9.00)/100;
+      }
+      else if(noOfMonths==21) {
+        ans=((noOfMonths*30)*amount*9.25)/100;
+      }
+      else {
+        ans=((noOfMonths*30)*amount*9.25)/100;
+      }
+    }
+    System.out.println("Interest gained: Rs."+ans);
+  }
+  
+}
+
+class FDAccount extends Account
+{
+  double interestRate,amount;
+  int noOfDays,ageOfACHolder;
+  public FDAccount(int days,double amount,int age) {
+    this.amount = amount;
+    this.noOfDays = days;
+    this.ageOfACHolder = age;
+    if(amount < 1e7)
+    {
+      if(noOfDays >=7 && noOfDays <= 14)
+      {
+        if(ageOfACHolder > 60)
+        {
+          this.interestRate = 5.00;
+        }
+        else
+        {
+          this.interestRate = 4.50;
+        }
+      }
+      else if(noOfDays >=15 && noOfDays <= 29)
+      {
+        if(ageOfACHolder > 60)
+        {
+          this.interestRate = 5.25;
+        }
+        else
+        {
+          this.interestRate = 4.75;
+        }
+      }
+      else if(noOfDays >=30 && noOfDays <= 45)
+      {
+        if(ageOfACHolder > 60)
+        {
+          this.interestRate = 6.00;
+        }
+        else
+        {
+          this.interestRate = 5.50;
+        }
+      }
+      else if(noOfDays >=45 && noOfDays <= 60)
+      {
+        if(ageOfACHolder > 60)
+        {
+          this.interestRate = 7.50;
+        }
+        else
+        {
+          this.interestRate = 7.00;
+        }
+      }
+      else if(noOfDays >=61 && noOfDays <= 184)
+      {
+        if(ageOfACHolder > 60)
+        {
+          this.interestRate = 8.00;
+        }
+        else
+        {
+          this.interestRate = 7.50;
+        }
+      }
+      else if(noOfDays >=185)
+      {
+        if(ageOfACHolder > 60)
+        {
+          this.interestRate = 8.50;
+        }
+        else
+        {
+          this.interestRate = 8.00;
+        }
+      }
+    }
+    else
+    {
+      if(noOfDays >=7 && noOfDays <= 14)
+      {
+        this.interestRate = 6.50;
+      }
+      else if(noOfDays >=15 && noOfDays <= 29)
+      {
+        this.interestRate = 6.75;
+      }
+      else if(noOfDays >=30 && noOfDays <= 45)
+      {
+        this.interestRate = 6.75;
+      }
+      else if(noOfDays >=45 && noOfDays <= 60)
+      {
+        this.interestRate = 8;
+      }
+      else if(noOfDays >=61 && noOfDays <= 184)
+      {
+        this.interestRate = 8.50;
+      }
+      else if(noOfDays >=185)
+      {
+        this.interestRate = 10.00;
+      }
+    }
+  }
+  void calculateInterest()
+  {
+    double si = (amount * interestRate * noOfDays)/100.00;
+    System.out.println("Interest Gained : " + si);
+  }
+  
+}
+
+public class InterestCalculator {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    double amount;
+    int age,days;
+    while(true) {
+    System.out.println("Select the option: ");
+    System.out.println("1. Interest Calculator - SB");
+    System.out.println("2. Interest Calculator - FD");
+    System.out.println("3. Interest CalCulator - RD");
+    System.out.println("4. Exit");
+    int c = sc.nextInt();
+    switch(c)
+    {
+    case 1:
+      System.out.println("Enter the FD amount ");
+      amount = sc.nextDouble();
+      System.out.println("Enter the number of days");
+      days = sc.nextInt();
+      System.out.println("Enter your age");
+      age = sc.nextInt();
+      FDAccount f = new FDAccount(days, amount, age);
+      f.calculateInterest();
+      break;
+    case 2:
+      System.out.println("Enter the FD amount ");
+      amount = sc.nextDouble();
+      System.out.println("Enter the number of months");
+      days = sc.nextInt();
+      System.out.println("Enter your age");
+      age = sc.nextInt();
+      RDAccount r = new RDAccount(amount, days, age);
+      r.calculateInterest();
+      break;
+    case 3:
+      System.out.println("Enter the FD amount ");
+      amount = sc.nextDouble();
+      System.out.println("Enter the account type ");
+      String type = sc.next();
+      SBAccount s = new SBAccount(amount, type);
+      s.calculateInterest();
+      break;
+    case 4: System.exit(0);
+    break;
+    default: System.out.println("Wrong Choice");
+    }
+  }
+  }
+}
