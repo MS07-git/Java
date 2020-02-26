@@ -1,0 +1,138 @@
+
+import java.security.KeyStore.Entry;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Scanner;
+import java.util.Set;
+
+class Employee1{
+	int id;
+	String name;
+	String email;
+	String phone_no;
+	
+	public Employee1(){
+		
+	}
+	
+	public Employee1(int id,String name, String email, String phone_no) {
+		this.id=id;
+		this.name=name;
+		this.email=email;
+		this.phone_no=phone_no;
+	}		
+	
+	void print() {
+		System.out.println(name+"\t"+email+"\t"+phone_no+" ");
+	}
+	
+}
+
+public class Employee { 
+	
+	static ArrayList<Employee1> obj=new ArrayList<Employee1>();
+	HashMap<Integer,Employee1> map=new HashMap<Integer,Employee1>();
+	Scanner sc=new Scanner(System.in);
+	
+	public static void main(String [] args) {
+		
+		Scanner sc=new Scanner(System.in);
+		
+		Employee emp=new Employee();
+				
+		do {
+			System.out.println();
+			System.out.println(" Choose from the following given options");
+			System.out.println(" 1 To Add New Employee Data");
+			System.out.println(" 2 To Display Data");
+			System.out.println(" 3 To Search Employee");
+			System.out.println(" 4 To Delete Employee");
+			System.out.println(" 0 To Exit");
+			int c=sc.nextInt();
+			switch(c){
+			 	case 1:emp.Add();
+		 		 	  	break;		
+			 	case 2:emp.Display();
+			 			break;
+			 	case 3:emp.Search();
+			 			break;
+			 	case 4:emp.Delete();
+	 					break;
+			 	case 0:
+					   System.out.println(":))............Done............:))"); 
+					   return;		 
+			}
+		}while(true);
+		
+	}
+	
+	void Add() {
+			
+			System.out.println("Enter ID of Employee");
+	 	  	int id=sc.nextInt();
+	 	  	  if(!map.containsKey(id)) {
+	 	  		System.out.println("Enter name of Employee");
+	 	  		String name=sc.next();
+	 	  		System.out.println("Employee Email_id of Employee");
+	 	  		String email=sc.next();
+	 	  		System.out.println("Employee Phone_no of Employee");
+	 	  		String phone_no=sc.next();
+	 	  		Employee1 obj1= new Employee1(id,name,email,phone_no);
+	 	  		obj.add(obj1);
+	 	  		for(Employee1 o:obj) {
+	 	  			if(!map.containsKey(o.id)) {
+	 		 	  		map.put(id, o);
+	 	  			}
+	 	  		}
+	 	  	  }
+	 	  	  else {
+	 	  		  System.out.println("Employee already exists");
+	 	  	  }
+	 	  		
+	}
+	
+	void Display() {
+			
+	    for(java.util.Map.Entry<Integer, Employee1> ent:map.entrySet()) {
+    		System.out.println(ent.getValue().name + " "+ent.getValue().email +" "+ent.getValue().phone_no);
+    		
+	    }
+	    
+	}
+	
+	void  Search() {
+		
+			System.out.println("Enter ID of Employee");
+ 	  		int id=sc.nextInt();
+ 	  		if(map.containsKey(id)) {
+ 	  			System.out.println(map.get(id).name + " "+map.get(id).email +" "+map.get(id).phone_no);
+ 	    		
+ 	  		}
+ 		    	else {
+ 		  			System.out.println();
+ 					System.out.println("Employee does not exists");
+ 					System.out.println();
+ 		    	}
+		 
+	}
+	
+	void Delete() {
+			
+			System.out.println("Enter ID of Employee");
+	  		int id=sc.nextInt();
+	  		if(map.containsKey(id)) {
+	  			map.remove(id);
+          System.out.println("Detail deleted");
+	  		}
+	  		else {
+	  			System.out.println();
+				System.out.println("Employee does not exists");
+				System.out.println();
+			
+	  		}
+	}
+	
+}
+
